@@ -9,12 +9,11 @@ This code uses python 3.
 
 `pip3 install -r requirements.txt`       
 
-- My implementation
- - `pip3 install -r requirements.txt`를 입력했을 때 아래 사진처럼 에러가 발생 -> 'pip install tensorboardX' 사용             
-![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)            
- - 이 외에도 `pip3 install -r requirements.txt` 썼을 때 제대로 설치되지 않는 패키지들에 대해서는, 아래 command로 **mamba** 설치 후 mamba install ~~ 로 패키지 설치해서 사용           
-  - conda install mamba -n [환경이름] -c conda-forge
-
+## My implementation
+`pip3 install -r requirements.txt`를 입력했을 때 아래 사진처럼 에러가 발생 -> 'pip install tensorboardX' 사용                
+![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)               
+이 외에도 `pip3 install -r requirements.txt` 썼을 때 제대로 설치되지 않는 패키지들에 대해서는, 아래 command로 **mamba** 설치 후 mamba install ~~ 로 패키지 설치해서 사용     
+- conda install mamba -n [환경이름] -c conda-forge
 
 # Usage
 
@@ -26,14 +25,12 @@ This will reproduce the _delete_ model on a dataset of yelp reviews:
 
 ![curves](https://i.imgur.com/jfYaDBr.png)
 
-
 Checkpoints, logs, model outputs, and TensorBoard summaries are written in the config's `working_dir`.
 
 See `yelp_config.json` for all of the training options. The most important parameter is `model_type`, which can be set to `delete`, `delete_retrieve`, or `seq2seq` (which is a standard translation-style model).
 
-- My implementation
- - poem2reddit
-  - python3 train.py --config p2r.json --bleu
+#### My implementation
+poem2reddit: python3 train.py --config p2r.json --bleu
 
 ### Inference
 
@@ -41,9 +38,8 @@ See `yelp_config.json` for all of the training options. The most important param
 
 To run inference, you can point the `src_test` and `tgt_test` fields in your config to new data.
 
-- My implementation
- - poem2reddit
-  - python inference.py --config p2r_e15.json --checkpoint p2r_e15/model.1.ckpt
+#### My implementation
+poem2reddit: python inference.py --config p2r_e15.json --checkpoint p2r_e15/model.1.ckpt
 
 
 ### Data prep
