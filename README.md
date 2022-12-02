@@ -44,7 +44,11 @@ Checkpoints, logs, model outputs, and TensorBoard summaries are written in the c
 See `yelp_config.json` for all of the training options. The most important parameter is `model_type`, which can be set to `delete`, `delete_retrieve`, or `seq2seq` (which is a standard translation-style model).
 
 #### My implementation
-poem2reddit: python3 train.py --config p2r_e15.json --bleu
+우리 데이터가 baseline1의 데이터 (yelp)와 달라서, 전처리 과정을 추가
+- python3 preprocess.py
+
+전처리 완료 후 train
+- poem2reddit: python3 train.py --config p2r_e15.json --bleu
 
 ### Inference
 
