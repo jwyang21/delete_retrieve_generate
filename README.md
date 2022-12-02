@@ -25,6 +25,10 @@ torch 설치의 경우 저는 cpu 서버 썼어서, 아래와 같이 설치했�
 - mamba install pytorch torchvision torchaudio cpuonly -c pytorch
 
 
+제가 사용한 conda 환경 (cpu) yml 파일도 같이 올려둘게요
+- 
+
+
 # Usage
 
 ### Training (runs inference on the dev set after each epoch)
