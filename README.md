@@ -8,9 +8,10 @@ installation -> preprocess -> data prep -> train -> inference
 
 
 # Installation     
-python 3.10 사용
 
 `pip3 install -r requirements.txt`    
+
+## My implementation
 - baseline1의 설치 command인데, 이대로 하면 아래 사진처럼 에러가 발생
             
 ![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)        
