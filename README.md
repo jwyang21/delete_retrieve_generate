@@ -12,7 +12,7 @@ installation -> preprocess -> (optional) check-process-data -> data prep -> trai
 `pip3 install -r requirements.txt`    
 
 ## My implementation
-- 위에 나와있는 설치 command대로 했을 때, 아래 사진처럼 에러가 발생함.
+위에 나와있는 설치 command대로 했을 때, 아래 사진처럼 에러가 발생함.
             
 ![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)        
 
