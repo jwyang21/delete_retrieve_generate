@@ -3,16 +3,19 @@
 This is an implementation of the DeleteOnly and DeleteAndRetrieve models from [Delete, Retrieve, Generate:
 A Simple Approach to Sentiment and Style Transfer](https://arxiv.org/pdf/1804.06437.pdf)
 
-# Installation
+# Flow
+installation -> preprocess -> data prep -> train -> inference
 
-This code uses python 3.       
 
-`pip3 install -r requirements.txt`       
+# Installation     
+python 3.10 사용
 
-## My implementation
-python 3.10 사용        
-`pip3 install -r requirements.txt`를 입력했을 때 아래 사진처럼 에러가 발생 -> 'pip install tensorboardX' 사용                
-![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)               
+`pip3 install -r requirements.txt`    
+- baseline1의 설치 command인데, 이대로 하면 아래 사진처럼 에러가 발생
+            
+![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)        
+
+'pip install tensorboardX' 로 패키지 개별 설치.        
 이 외에도 `pip3 install -r requirements.txt` 썼을 때 제대로 설치되지 않는 패키지들에 대해서는, 아래 command로 **mamba** 설치 후 mamba install ~~ 로 개별 패키지 설치해서 사용     
 - conda install mamba -n [환경이름] -c conda-forge      
 
@@ -21,17 +24,37 @@ python 3.10 사용
 - pip install langdetect          
 
 
-torch 설치의 경우 저는 cpu 서버 썼어서, 아래와 같이 설치했습니다           
+torch 설치의 경우, 아래 command 사용 (cpu서버)           
 - mamba install pytorch torchvision torchaudio cpuonly -c pytorch
 
 
-제가 사용한 conda 환경 (cpu) yml 파일도 같이 올려둘게요
-- 
+제가 사용한 conda 환경 (cpu) yml 파일
+- tst.yml
+
+# Preprocess
+baseline 코드에는 없고, poem 및 reddit 데이터 쓰기 위해 추가함.       
+'python3 preprocess.py'    
 
 
-# Usage
+# Data prep
+Given two pre-tokenized corpus files, use the scripts in `tools/` to generate a vocabulary and attribute vocabulary:        
 
-### Training (runs inference on the dev set after each epoch)
+```
+python tools/make_vocab.py [entire corpus file (src + tgt cat'd)] [vocab size] > vocab.txt
+python tools/make_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
+python tools/make_ngram_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
+```
+
+## My implementation       
+Make vocabulary set of entire train corpus (num_vocab: 10000)          
+- python tools/make_vocab.py data/processed/entire_small_train_corpus.txt 10000 > data/processed/entire_small_train_vocab.txt        
+
+Find attribute markers (ngrams) from poem and reddit train corpus, respectively (saliency ratio: 5.5)               
+- poem attribute ngram: python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_poem_train_corpus.txt data/processed/small_reddit_train_corpus.txt 5.5 > data/processed/small_poem_attribute_ngram_vocab_s5.5.txt                   
+- reddit attribute ngrams: python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_reddit_train_corpus.txt data/processed/small_poem_train_corpus.txt 5.5 > data/processed/small_reddit_attribute_ngram_vocab_s5.5.txt  
+
+
+# Training (runs inference on the dev set after each epoch)
 
 `python3 train.py --config yelp_config.json --bleu`
 
@@ -43,39 +66,19 @@ Checkpoints, logs, model outputs, and TensorBoard summaries are written in the c
 
 See `yelp_config.json` for all of the training options. The most important parameter is `model_type`, which can be set to `delete`, `delete_retrieve`, or `seq2seq` (which is a standard translation-style model).
 
-#### My implementation
-우리 데이터가 baseline1의 데이터 (yelp)와 달라서, 전처리 과정을 추가
-- python3 preprocess.py
+## My implementation
 
-전처리 완료 후 train
+전처리된 데이터 써서 train
 - poem2reddit: python3 train.py --config p2r_e15.json --bleu
 
-### Inference
+# Inference
 
 `python inference.py --config yelp_config.json --checkpoint path/to/model.ckpt`
 
 To run inference, you can point the `src_test` and `tgt_test` fields in your config to new data.
 
-#### My implementation
+## My implementation
 poem2reddit: python inference.py --config p2r_e15.json --checkpoint p2r_e15/model.1.ckpt
-
-
-### Data prep
-
-Given two pre-tokenized corpus files, use the scripts in `tools/` to generate a vocabulary and attribute vocabulary:
-
-```
-python tools/make_vocab.py [entire corpus file (src + tgt cat'd)] [vocab size] > vocab.txt
-python tools/make_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
-python tools/make_ngram_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
-```
-#### My implementation       
-Make vocabulary set of entire train corpus (num_vocab: 10000)          
-- python tools/make_vocab.py data/processed/entire_small_train_corpus.txt 10000 > data/processed/entire_small_train_vocab.txt        
-
-Find attribute markers (ngrams) from poem and reddit train corpus, respectively (saliency ratio: 5.5)               
-- poem attribute ngram: python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_poem_train_corpus.txt data/processed/small_reddit_train_corpus.txt 5.5 > data/processed/small_poem_attribute_ngram_vocab_s5.5.txt                   
-- reddit attribute ngrams: python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_reddit_train_corpus.txt data/processed/small_poem_train_corpus.txt 5.5 > data/processed/small_reddit_attribute_ngram_vocab_s5.5.txt        
 
 
 # Citation
