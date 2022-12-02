@@ -51,7 +51,7 @@ python tools/make_vocab.py [entire corpus file (src + tgt cat'd)] [vocab size] >
 python tools/make_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
 python tools/make_ngram_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
 ```
-- My implementation
+#### My implementation
  - Make vocabulary set of entire train corpus (num_vocab: 10000)
   - python tools/make_vocab.py data/processed/entire_small_train_corpus.txt 10000 > data/processed/entire_small_train_vocab.txt
 
