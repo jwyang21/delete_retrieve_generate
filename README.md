@@ -56,14 +56,14 @@ python tools/make_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt fil
 python tools/make_ngram_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
 ```
 - My implementation
- - 1. Make vocabulary set of entire train corpus
-  - python tools/make_vocab.py /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_corpus.txt 10000 > /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_vocab.txt
+ - Make vocabulary set of entire train corpus (num_vocab: 10000)
+  - python tools/make_vocab.py data/processed/entire_small_train_corpus.txt 10000 > data/processed/entire_small_train_vocab.txt
 
- - 2. Find attribute markers (ngrams) from poem and reddit train corpus, respectively (saliency ratio: 5.5)
+ - Find attribute markers (ngrams) from poem and reddit train corpus, respectively (saliency ratio: 5.5)
   - poem attribute ngram:
-   - python tools/make_ngram_attribute_vocab.py /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_vocab.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_poem_train_corpus.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_reddit_train_corpus.txt 5.5 > /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_poem_attribute_ngram_vocab_s5.5.txt
+   - python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_poem_train_corpus.txt data/processed/small_reddit_train_corpus.txt 5.5 > data/processed/small_poem_attribute_ngram_vocab_s5.5.txt
   - reddit attribute ngrams:
-   - python tools/make_ngram_attribute_vocab.py /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_vocab.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_reddit_train_corpus.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_poem_train_corpus.txt 5.5 > /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_reddit_attribute_ngram_vocab_s5.5.txt
+   - python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_reddit_train_corpus.txt data/processed/small_poem_train_corpus.txt 5.5 > data/processed/small_reddit_attribute_ngram_vocab_s5.5.txt
 
 
 # Citation
