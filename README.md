@@ -13,7 +13,9 @@ This code uses python 3.
 `pip3 install -r requirements.txt`를 입력했을 때 아래 사진처럼 에러가 발생 -> 'pip install tensorboardX' 사용                
 ![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)               
 이 외에도 `pip3 install -r requirements.txt` 썼을 때 제대로 설치되지 않는 패키지들에 대해서는, 아래 command로 **mamba** 설치 후 mamba install ~~ 로 패키지 설치해서 사용     
-- conda install mamba -n [환경이름] -c conda-forge                 
+- conda install mamba -n [환경이름] -c conda-forge      
+
+
 추가적으로, langdetect 패키지 사용 (https://pypi.org/project/langdetect/)
 - pip install langdetect
 
