@@ -100,15 +100,15 @@ def train_test_split(df, s_flag, savedir, train_fname, test_fname, small_train_f
     print("test set size: ", test.shape)
         
     # save train/test sets
-    reddit_train.to_csv(os.path.join(savedir, train_fname), index = False)
-    reddit_test.to_csv(os.path.join(savedir, test_fname), index = False)
+    train.to_csv(os.path.join(savedir, train_fname), index = False)
+    test.to_csv(os.path.join(savedir, test_fname), index = False)
     
     # (optional) make small trainset
     if s_flag==True:
         train.index = np.arange(train.shape[0])
         small_train_ind = sample(np.arange(train.shape[0]).tolist(), small_trainset_size)
         small_trainset = train.iloc[small_train_ind,:].copy()
-        small_reddit_trainset.to_csv(os.path.join(savedir, small_train_fname), index = False)
+        small_trainset.to_csv(os.path.join(savedir, small_train_fname), index = False)
         
     return train, test, small_trainset
 
