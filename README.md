@@ -4,7 +4,7 @@ This is an implementation of the DeleteOnly and DeleteAndRetrieve models from [D
 A Simple Approach to Sentiment and Style Transfer](https://arxiv.org/pdf/1804.06437.pdf)
 
 # Flow
-installation -> preprocess -> data prep -> train -> inference
+installation -> preprocess -> (optional) check-process-data -> data prep -> train -> inference
 
 
 # Installation     
@@ -35,6 +35,11 @@ conda 환경 (cpu) yml 파일
 # Preprocess
 baseline 코드에는 없고, poem 및 reddit 데이터 쓰기 위해 추가함.       
 - python3 preprocess.py    
+
+(optional) check preprocesss <- small trainset으로 모델 돌리는 경우에만!        
+small trainset 기준으로, poem 데이터의 small trainset에 있는 모든 문장이 poem 전체 corpus에 속하는지 확인. 같은 작업을 reddit에 대해서도 함.               
+- python3 check-processed-data.py            
+
 
 
 # Data prep
