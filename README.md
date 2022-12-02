@@ -81,6 +81,14 @@ To run inference, you can point the `src_test` and `tgt_test` fields in your con
 ## My implementation
 poem2reddit: python inference.py --config p2r_e15.json --checkpoint p2r_e15/model.1.ckpt
 
+# etc
+결과파일들이 총 4종류 (auxs.{i}, golds{i}, inputs.{i}, predicts.{i})                        
+          
+지금까지 파악하기로는 (확실치는 않지만) 아래와 같은 것으로 보임                   
+- inputs.{i}: i-th epoch 때 모델 디코더 (text style transfer 실행하는 부분)에 input된 문장                    
+- preds.{i}: i-th epoch 때 모델 디코더가 output한 최종 문장        
+- golds.{i}: desired output               
+
 
 # Citation
 
