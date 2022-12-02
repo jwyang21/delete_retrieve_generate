@@ -33,7 +33,7 @@ torch 설치의 경우, 아래 command 사용 (cpu서버)
 
 # Preprocess
 baseline 코드에는 없고, poem 및 reddit 데이터 쓰기 위해 추가함.       
-'python3 preprocess.py'    
+- python3 preprocess.py    
 
 
 # Data prep
