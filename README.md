@@ -5,12 +5,16 @@ A Simple Approach to Sentiment and Style Transfer](https://arxiv.org/pdf/1804.06
 
 # Installation
 
-`pip3 install -r requirements.txt`          
-- 이 command를 입력했을 때 아래와 같은 에러가 발생     
-![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)
+This code uses python 3.       
 
+`pip3 install -r requirements.txt`       
 
-This code uses python 3. 
+- My implementation
+ - `pip3 install -r requirements.txt`를 입력했을 때 아래 사진처럼 에러가 발생 -> 'pip install tensorboardX' 사용             
+![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)            
+ - 이 외에도 `pip3 install -r requirements.txt` 썼을 때 제대로 설치되지 않는 패키지들에 대해서는, 아래 command로 **mamba** 설치 후 mamba install ~~ 로 패키지 설치해서 사용           
+  - conda install mamba -n [환경이름] -c conda-forge
+
 
 # Usage
 
@@ -27,11 +31,19 @@ Checkpoints, logs, model outputs, and TensorBoard summaries are written in the c
 
 See `yelp_config.json` for all of the training options. The most important parameter is `model_type`, which can be set to `delete`, `delete_retrieve`, or `seq2seq` (which is a standard translation-style model).
 
+- My implementation
+ - poem2reddit
+  - python3 train.py --config p2r.json --bleu
+
 ### Inference
 
 `python inference.py --config yelp_config.json --checkpoint path/to/model.ckpt`
 
-To run inference, you can point the `src_test` and `tgt_test` fields in your config to new data. 
+To run inference, you can point the `src_test` and `tgt_test` fields in your config to new data.
+
+- My implementation
+ - poem2reddit
+  - python inference.py --config p2r_e15.json --checkpoint p2r_e15/model.1.ckpt
 
 
 ### Data prep
@@ -43,6 +55,16 @@ python tools/make_vocab.py [entire corpus file (src + tgt cat'd)] [vocab size] >
 python tools/make_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
 python tools/make_ngram_attribute_vocab.py vocab.txt [corpus src file] [corpus tgt file] [salience ratio] > attribute_vocab.txt
 ```
+- My implementation
+ - 1. Make vocabulary set of entire train corpus
+  - python tools/make_vocab.py /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_corpus.txt 10000 > /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_vocab.txt
+
+ - 2. Find attribute markers (ngrams) from poem and reddit train corpus, respectively (saliency ratio: 5.5)
+  - poem attribute ngram:
+   - python tools/make_ngram_attribute_vocab.py /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_vocab.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_poem_train_corpus.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_reddit_train_corpus.txt 5.5 > /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_poem_attribute_ngram_vocab_s5.5.txt
+  - reddit attribute ngrams:
+   - python tools/make_ngram_attribute_vocab.py /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/entire_small_train_vocab.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_reddit_train_corpus.txt /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_poem_train_corpus.txt 5.5 > /data/project/jeewon/coursework/2022-2/nlp/data/processed/small/small_reddit_attribute_ngram_vocab_s5.5.txt
+
 
 # Citation
 
