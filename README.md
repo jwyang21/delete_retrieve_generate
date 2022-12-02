@@ -5,7 +5,10 @@ A Simple Approach to Sentiment and Style Transfer](https://arxiv.org/pdf/1804.06
 
 # Installation
 
-`pip3 install -r requirements.txt`
+`pip3 install -r requirements.txt`          
+- 이 command를 입력했을 때 아래와 같은 에러가 발생     
+![install-error](https://user-images.githubusercontent.com/86412887/205253321-45e84c16-04ac-43d6-9b89-717cecd8ae10.png)
+
 
 This code uses python 3. 
 
