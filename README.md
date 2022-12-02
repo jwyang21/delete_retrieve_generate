@@ -29,7 +29,7 @@ torch 설치의 경우, 아래 command 사용 (cpu서버)
 - mamba install pytorch torchvision torchaudio cpuonly -c pytorch
 
 
-제가 사용한 conda 환경 (cpu) yml 파일
+conda 환경 (cpu) yml 파일
 - tst.yml
 
 # Preprocess
