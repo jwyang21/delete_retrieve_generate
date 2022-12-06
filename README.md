@@ -53,11 +53,15 @@ python tools/make_ngram_attribute_vocab.py vocab.txt [corpus src file] [corpus t
 
 ## My implementation       
 Make vocabulary set of entire train corpus (num_vocab: 10000)          
-- python tools/make_vocab.py data/processed/entire_small_train_corpus.txt 10000 > data/processed/entire_small_train_vocab.txt         
+- python tools/make_vocab.py data/processed/entire_small_train_corpus.txt 10000 > data/processed/entire_small_train_vocab.txt             
 
-- python tools/make_vocab.py data/processed/small_poem_train_corpus.txt 10000 > data/processed/poem_small_train_vocab.txt                 
+Make vocabulary set of small poem train corpus (num_vocab: 10000)           
 
-- python tools/make_vocab.py data/processed/small_reddit_train_corpus.txt 10000 > data/processed/reddit_small_train_vocab.txt                 
+- python tools/make_vocab.py data/processed/small_poem_train_corpus.txt 10000 > data/processed/poem_small_train_vocab.txt             
+
+Make vocabulary set of small reddit train corpus (num_vocab: 10000)           
+
+- python tools/make_vocab.py data/processed/small_reddit_train_corpus.txt 10000 > data/processed/reddit_small_train_vocab.txt                      
 
 Find attribute markers (ngrams) from poem and reddit train corpus, respectively (saliency ratio: 5.5)               
 - poem attribute ngram: python tools/make_ngram_attribute_vocab.py data/processed/entire_small_train_vocab.txt data/processed/small_poem_train_corpus.txt data/processed/small_reddit_train_corpus.txt 5.5 > data/processed/small_poem_attribute_ngram_vocab_s5.5.txt                   
