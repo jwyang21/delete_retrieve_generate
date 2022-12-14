@@ -139,6 +139,11 @@ num_batches = num_examples / batch_size
 
 STEP = 0
 for epoch in range(start_epoch, config['training']['epochs']):
+    # save model checkpoint for every train epoch
+    torch.save(model.state_dict(), working_dir + '/model.%s.ckpt' % epoch)
+
+    # original code (update model checkpoint only when the performance (evaluated by the metric) improves)
+    '''
     if cur_metric > best_metric:
         # rm old checkpoint
         for ckpt_path in glob.glob(working_dir + '/model.*'):
@@ -148,7 +153,8 @@ for epoch in range(start_epoch, config['training']['epochs']):
 
         best_metric = cur_metric
         best_epoch = epoch - 1
-
+    '''
+    
     losses = []
     for i in range(0, num_examples, batch_size):
 
