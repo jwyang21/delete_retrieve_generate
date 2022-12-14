@@ -83,7 +83,9 @@ See `yelp_config.json` for all of the training options. The most important param
 ## My implementation
 
 전처리된 데이터 써서 train
-- poem2reddit: python3 train.py --config p2r_e15.json --bleu
+- python3 train.py --config p2r_e15_diff_s5.5.json --bleu  #src_vocab != tgt_vocab, salience_ratio = 5.5, num_train_epoch = 15
+
+- python3 train.py --config p2r_e15_same_s5.5.json --bleu  #src_vocab == tgt_vocab, salience_ratio = 5.5, num_train_epoch = 15
 
 # Inference
 
